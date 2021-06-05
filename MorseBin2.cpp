@@ -1,34 +1,38 @@
 #include "Arduino.h"
 #include "MorseBin2.h"
-void MB2Send0(int sendpin) {
+void MB2MB2Send0(int sendpin) {
  	digitalWrite(sendpin,HIGH);
- 	delayMicroseconds(time0);
+ 	delayMicroseconds(144);
  	digitalWrite(sendpin,LOW);
- 	delayMicroseconds(time1);
+ 	delayMicroseconds(48);
   }
-void MB2Send1(int sendpin) {
+void MB2MB2Send1(int sendpin) {
  	digitalWrite(sendpin,HIGH);
- 	delayMicroseconds(time1);
+ 	delayMicroseconds(48);
  	digitalWrite(sendpin,LOW);
- 	delayMicroseconds(time1);
+ 	delayMicroseconds(48);
   }
 void MB2SendByte(String input,int sendpin){
 	digitalWrite(sendpin,HIGH);
-	delayMicroseconds(time0+time1);
+	delayMicroseconds(144+48);
 	digitalWrite(sendpin,LOW);
-	delayMicroseconds(time1);
+	delayMicroseconds(48);
    	 for (int i=0;i<8;i++){
     		if (input.charAt(i)=='1'){
-     		 Send1(sendpin);
+     		 MB2Send1(sendpin);
       		//Serial.println("gotit1");
       	}
       if (input.charAt(i)=='0'){
-      		Send0(sendpin);
+      		MB2Send0(sendpin);
       		//Serial.println("gotit0");
       }
     }
   }
 String MB2Receive(int respin){
+	int time1 = 48;
+	int time0 = 144;
+	int timeMiddle = ((time0+time1)/2);
+	int timeForStart = ((time0+time1)-(time1/2));
 	String buf;
   	int waitTimer = 0;
 	int timeouttimer = 0;

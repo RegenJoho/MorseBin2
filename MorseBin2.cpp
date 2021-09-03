@@ -1,12 +1,12 @@
 #include "Arduino.h"
 #include "MorseBin2.h"
-void MB2MB2Send0(int sendpin) {
+void MB2Send0(int sendpin) {
  	digitalWrite(sendpin,HIGH);
  	delayMicroseconds(144);
  	digitalWrite(sendpin,LOW);
  	delayMicroseconds(48);
   }
-void MB2MB2Send1(int sendpin) {
+void MB2Send1(int sendpin) {
  	digitalWrite(sendpin,HIGH);
  	delayMicroseconds(48);
  	digitalWrite(sendpin,LOW);
